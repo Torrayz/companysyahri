@@ -29,7 +29,7 @@ export const legalitySchema = z.object({
   title: z.string().min(2).max(100),
   number: z.string().max(100).optional(),
   description: z.string().max(500).optional(),
-  file_url: z.string().url().optional(),
+  file_url: z.string().optional(),
   order: z.number().int().min(0).default(0),
 })
 
