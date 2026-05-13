@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /kelola-panel/
+
+Sitemap: https://prabaswara.vercel.app/sitemap.xml
