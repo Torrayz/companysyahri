@@ -1,20 +1,13 @@
-import { cacheLife } from 'next/cache'
+import { Hero } from '@/components/public/hero'
+import { ServiceHighlight } from '@/components/public/service-highlight'
+import { CtaSection } from '@/components/public/cta-section'
 
-export default async function HomePage() {
-  'use cache'
-  cacheLife('hours')
-
+export default function HomePage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
-        <h1 className="text-4xl font-bold text-primary md:text-6xl">
-          CV. Prabaswara Gandar Prima
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-text-muted">
-          Sinergi Kebutuhan Bisnis dan Inovasi Digital
-        </p>
-      </section>
-    </div>
+    <>
+      <Hero />
+      <ServiceHighlight />
+      <CtaSection />
+    </>
   )
 }
