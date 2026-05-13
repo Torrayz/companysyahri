@@ -52,7 +52,14 @@ export function AdminSidebar() {
         })}
       </nav>
 
-      <div className="border-t border-border p-3">
+      <div className="border-t border-border p-3 space-y-1">
+        <button
+          onClick={toggle}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-text-muted hover:bg-background hover:text-text"
+        >
+          {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
         <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-text-muted hover:bg-background hover:text-red-600"
