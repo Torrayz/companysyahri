@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -10,10 +10,17 @@ import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
+  useEffect(() => {
+    function onScroll() { setScrolled(window.scrollY > 10) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
+    <header className={`sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm transition-shadow ${scrolled ? 'border-border shadow-sm' : 'border-transparent'}`}>
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/images/logo.jpeg" alt="Prabaswara" width={36} height={36} className="rounded" />
