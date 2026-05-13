@@ -15,10 +15,11 @@ export function ContactForm() {
     if (result.error) {
       setStatus('error')
       setMessage(result.error)
+      // TIDAK reset form saat error — field tetap terisi
     } else {
       setStatus('success')
       setMessage('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.')
-      formRef.current?.reset()
+      formRef.current?.reset() // Hanya reset saat sukses
     }
   }
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { FileCheck, Plus } from 'lucide-react'
+import { FileCheck, Plus, Pencil } from 'lucide-react'
 import { DeleteLegalityButton } from '@/components/admin/delete-legality-button'
 
 export default async function AdminLegalitasPage() {
@@ -30,7 +30,12 @@ export default async function AdminLegalitasPage() {
                 <p className="text-xs text-text-muted">{doc.number || 'Tanpa nomor'}</p>
               </div>
             </div>
-            <DeleteLegalityButton id={doc.id} />
+            <div className="flex items-center gap-1">
+              <Link href={`/kelola-panel/legalitas/${doc.id}`} className="rounded-lg p-2 text-text-muted hover:bg-background-muted hover:text-primary">
+                <Pencil className="h-4 w-4" />
+              </Link>
+              <DeleteLegalityButton id={doc.id} />
+            </div>
           </div>
         ))}
         {(!docs || docs.length === 0) && <p className="py-8 text-center text-sm text-text-muted">Belum ada dokumen legalitas.</p>}

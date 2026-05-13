@@ -24,6 +24,19 @@ export async function createPortfolio(data: unknown) {
   return { success: true }
 }
 
+export async function updatePortfolio(id: string, data: unknown) {
+  const parsed = portfolioSchema.safeParse(data)
+  if (!parsed.success) return { error: parsed.error.errors[0].message }
+
+  const supabase = createAdminClient()
+  const { error } = await supabase.from('portfolios').update(parsed.data).eq('id', id)
+  if (error) return { error: error.message }
+
+  revalidatePath('/portfolio')
+  revalidatePath('/kelola-panel/portfolio')
+  return { success: true }
+}
+
 export async function deletePortfolio(id: string) {
   const supabase = createAdminClient()
   const { error } = await supabase.from('portfolios').delete().eq('id', id)
