@@ -1,6 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath } from 'next/cache'
 
 export async function getProfile() {
@@ -10,7 +11,7 @@ export async function getProfile() {
 }
 
 export async function updateProfile(data: Record<string, unknown>) {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data: profile } = await supabase.from('profiles').select('id').single()
   if (!profile) return { error: 'Profile not found' }
 
@@ -18,5 +19,6 @@ export async function updateProfile(data: Record<string, unknown>) {
   if (error) return { error: error.message }
 
   revalidatePath('/profil')
+  revalidatePath('/kelola-panel/profil')
   return { success: true }
 }

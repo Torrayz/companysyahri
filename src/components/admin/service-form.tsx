@@ -81,6 +81,8 @@ export function ServiceForm({ service }: { service?: Service }) {
         <input
           name="order"
           type="number"
+          min="0"
+          step="1"
           defaultValue={service?.order ?? 0}
           className="mt-1 w-full rounded-lg border border-border px-4 py-2 text-sm outline-none focus:border-primary"
         />
