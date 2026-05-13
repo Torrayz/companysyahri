@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/constants'
@@ -13,8 +14,9 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-lg font-bold text-primary">
-          Prabaswara
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/images/logo.jpeg" alt="Prabaswara" width={36} height={36} className="rounded" />
+          <span className="text-lg font-bold text-primary">Prabaswara</span>
         </Link>
 
         {/* Desktop nav */}

@@ -3,10 +3,10 @@
 @theme {
   --font-main: "Plus Jakarta Sans", system-ui, sans-serif;
 
-  --color-primary: #1E3A5F;
-  --color-primary-light: #2A5A8F;
-  --color-secondary: #D4A853;
-  --color-accent: #0D9488;
+  --color-primary: #1B3A6B;
+  --color-primary-light: #2E6BB5;
+  --color-secondary: #E8611A;
+  --color-accent: #E8611A;
   --color-background: #FFFFFF;
   --color-background-muted: #F8FAFC;
   --color-text: #1E293B;
@@ -36,7 +36,7 @@
 
   /* Selection color */
   ::selection {
-    background-color: #1E3A5F;
+    background-color: #1B3A6B;
     color: white;
   }
 }
