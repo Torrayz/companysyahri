@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/constants'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
@@ -35,14 +36,17 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile hamburger button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-text-muted hover:bg-background-muted md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          {/* Mobile hamburger button */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-text-muted hover:bg-background-muted md:hidden"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}

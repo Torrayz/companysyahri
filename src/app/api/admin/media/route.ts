@@ -25,6 +25,22 @@ export async function GET() {
 export async function DELETE(req: NextRequest) {
   const { path } = await req.json()
   const supabase = createAdminClient()
+
+  // Check if file is in use
+  const url = supabase.storage.from('media').getPublicUrl(path).data.publicUrl
+  const [portfolios, legality] = await Promise.all([
+    supabase.from('portfolios').select('title').eq('image_url', url),
+    supabase.from('legality').select('title').eq('file_url', url),
+  ])
+
+  const usedBy: string[] = []
+  portfolios.data?.forEach(p => usedBy.push(`Portfolio: ${p.title}`))
+  legality.data?.forEach(l => usedBy.push(`Legalitas: ${l.title}`))
+
+  if (usedBy.length > 0) {
+    return NextResponse.json({ error: `File sedang digunakan oleh: ${usedBy.join(', ')}`, usedBy }, { status: 409 })
+  }
+
   const { error } = await supabase.storage.from('media').remove([path])
   if (error) return NextResponse.json({ error: error.message }, { status: 400 })
   return NextResponse.json({ success: true })
