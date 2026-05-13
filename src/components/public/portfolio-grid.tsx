@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Calendar } from 'lucide-react'
 import type { Portfolio } from '@/types'
 
 const categories = [
@@ -41,8 +43,9 @@ export function PortfolioGrid({ portfolios }: { portfolios: Portfolio[] }) {
       {/* Grid */}
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((item) => (
-          <div
+          <Link
             key={item.id}
+            href={`/portfolio/${item.id}`}
             className="group overflow-hidden rounded-xl border border-border bg-background transition-shadow hover:shadow-md"
           >
             {/* Image */}
@@ -67,15 +70,16 @@ export function PortfolioGrid({ portfolios }: { portfolios: Portfolio[] }) {
               <span className="inline-block rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary capitalize">
                 {item.category}
               </span>
-              <h3 className="mt-2 font-semibold text-text">{item.title}</h3>
+              <h3 className="mt-2 font-semibold text-text group-hover:text-primary">{item.title}</h3>
               {item.description && (
                 <p className="mt-1 text-sm text-text-muted line-clamp-2">{item.description}</p>
               )}
-              {item.client_name && (
-                <p className="mt-2 text-xs text-text-muted">Klien: {item.client_name}</p>
-              )}
+              <div className="mt-3 flex items-center gap-1 text-xs text-text-muted">
+                <Calendar className="h-3 w-3" />
+                {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
