@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { Briefcase, Plus, Pencil } from 'lucide-react'
 import { DeleteServiceButton } from '@/components/admin/delete-service-button'
 
 export default async function AdminLayananPage() {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data: services } = await supabase.from('services').select('*').order('order')
 
   return (

@@ -17,7 +17,10 @@ export async function createService(data: unknown) {
 
   const supabase = createAdminClient()
   const { error } = await supabase.from('services').insert(parsed.data)
-  if (error) return { error: error.message }
+  if (error) {
+    console.error('createService error:', error)
+    return { error: error.message }
+  }
 
   revalidatePath('/layanan')
   revalidatePath('/kelola-panel/layanan')
