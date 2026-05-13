@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getServices } from '@/actions/services'
 import { PenTool, Monitor, Armchair, UtensilsCrossed, Globe, Package } from 'lucide-react'
+import { Reveal } from '@/components/public/reveal'
 
 export const metadata: Metadata = {
   title: 'Layanan',
@@ -32,21 +33,20 @@ export default async function LayananPage() {
       {/* Service grid */}
       <section className="container mx-auto mt-12 px-4">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = iconMap[service.icon ?? ''] ?? Package
             return (
-              <div
-                key={service.id}
-                className="group rounded-xl border border-border bg-background p-6 transition-all hover:border-primary/30 hover:shadow-md"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
-                  <Icon className="h-6 w-6 text-primary" />
+              <Reveal key={service.id} delay={index * 100}>
+                <div className="group rounded-xl border border-border bg-background p-6 transition-all hover:border-primary/30 hover:shadow-md hover:-translate-y-1">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
+                    <Icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-text">{service.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-text">{service.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                  {service.description}
-                </p>
-              </div>
+              </Reveal>
             )
           })}
         </div>

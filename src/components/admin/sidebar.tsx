@@ -6,8 +6,9 @@ import { createClient } from '@/lib/supabase/client'
 import { ADMIN_NAV_LINKS } from '@/lib/constants'
 import {
   LayoutDashboard, Building2, Briefcase, FolderOpen,
-  FileCheck, Image, Mail, LogOut
+  FileCheck, Image, Mail, LogOut, Moon, Sun
 } from 'lucide-react'
+import { useTheme } from '@/components/theme-provider'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   LayoutDashboard, Building2, Briefcase, FolderOpen, FileCheck, Image, Mail,
@@ -16,6 +17,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export function AdminSidebar() {
   const pathname = usePathname()
   const router = useRouter()
+  const { theme, toggle } = useTheme()
 
   async function handleLogout() {
     const supabase = createClient()
