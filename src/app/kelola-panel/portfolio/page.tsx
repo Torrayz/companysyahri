@@ -1,14 +1,24 @@
-import { createClient } from '@/lib/supabase/server'
-import { FolderOpen } from 'lucide-react'
+import Link from 'next/link'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { FolderOpen, Plus } from 'lucide-react'
+import { DeletePortfolioButton } from '@/components/admin/delete-portfolio-button'
 
 export default async function AdminPortfolioPage() {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data: portfolios } = await supabase.from('portfolios').select('*').order('created_at', { ascending: false })
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-text">Kelola Portfolio</h1>
-      <p className="mt-1 text-sm text-text-muted">{portfolios?.length ?? 0} portfolio</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-text">Kelola Portfolio</h1>
+          <p className="mt-1 text-sm text-text-muted">{portfolios?.length ?? 0} portfolio</p>
+        </div>
+        <Link href="/kelola-panel/portfolio/tambah" className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-light">
+          <Plus className="h-4 w-4" />
+          Tambah
+        </Link>
+      </div>
 
       <div className="mt-6 space-y-3">
         {portfolios?.map((item) => (
@@ -20,9 +30,7 @@ export default async function AdminPortfolioPage() {
                 <p className="text-xs text-text-muted capitalize">{item.category} {item.client_name ? `• ${item.client_name}` : ''}</p>
               </div>
             </div>
-            <span className={`rounded-full px-2 py-0.5 text-xs ${item.is_active ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-              {item.is_active ? 'Aktif' : 'Nonaktif'}
-            </span>
+            <DeletePortfolioButton id={item.id} />
           </div>
         ))}
 
