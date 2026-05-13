@@ -24,16 +24,24 @@ const missions = [
 
 export default function ProfilPage() {
   return (
-    <div className="py-16">
-      {/* Header */}
-      <section className="container mx-auto px-4 text-center">
-        <h1 className="text-3xl font-bold text-text md:text-4xl">Profil Perusahaan</h1>
-        <p className="mt-3 text-text-muted">Mengenal lebih dekat {SITE_CONFIG.name}</p>
+    <div>
+      {/* Hero banner with gradient background */}
+      <section className="relative overflow-hidden bg-primary py-20 text-white">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-secondary blur-3xl" />
+        </div>
+
+        <div className="container relative mx-auto px-4 text-center">
+          <h1 className="text-3xl font-bold md:text-4xl">Profil Perusahaan</h1>
+          <p className="mt-3 text-white/70">Mengenal lebih dekat {SITE_CONFIG.name}</p>
+        </div>
       </section>
 
       {/* About */}
-      <section className="container mx-auto mt-12 px-4">
-        <div className="mx-auto max-w-3xl rounded-xl border border-border bg-background p-8">
+      <section className="container mx-auto -mt-8 px-4">
+        <div className="mx-auto max-w-3xl rounded-xl border border-border bg-background p-8 shadow-sm">
           <div className="flex items-center gap-3">
             <Building2 className="h-6 w-6 text-primary" />
             <h2 className="text-xl font-semibold">Tentang Kami</h2>
@@ -53,7 +61,7 @@ export default function ProfilPage() {
 
       {/* Visi */}
       <section className="container mx-auto mt-12 px-4">
-        <div className="mx-auto max-w-3xl rounded-xl bg-primary/5 p-8">
+        <div className="mx-auto max-w-3xl rounded-xl bg-gradient-to-br from-primary/5 to-secondary/5 p-8">
           <h2 className="text-center text-2xl font-bold text-text">Visi</h2>
           <p className="mt-4 text-center text-lg leading-relaxed text-text-muted">
             Menjadi perusahaan penyedia barang dan jasa yang inovatif, terpercaya, dan mampu
@@ -63,12 +71,12 @@ export default function ProfilPage() {
       </section>
 
       {/* Misi */}
-      <section className="container mx-auto mt-12 px-4">
+      <section className="container mx-auto mt-12 px-4 pb-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-center text-2xl font-bold text-text">Misi</h2>
           <div className="mt-8 space-y-6">
             {missions.map((mission, index) => (
-              <div key={index} className="flex gap-4 rounded-lg border border-border p-5">
+              <div key={index} className="flex gap-4 rounded-lg border border-border p-5 transition-colors hover:border-primary/30">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                   <mission.icon className="h-5 w-5 text-primary" />
                 </div>
