@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { updateProfile } from '@/actions/profile'
 
 export default function AdminProfilPage() {
@@ -11,8 +10,7 @@ export default function AdminProfilPage() {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    const supabase = createClient()
-    supabase.from('profiles').select('*').single().then(({ data }) => {
+    fetch('/api/admin/profile').then(r => r.json()).then((data) => {
       setProfile(data)
       setLoading(false)
     })
