@@ -21,8 +21,15 @@ export default function AdminMediaPage() {
   }
 
   async function handleDelete(path: string) {
-    if (!confirm('Hapus file ini? File yang sedang dipakai di portfolio/legalitas akan hilang.')) return
-    await fetch('/api/admin/media', { method: 'DELETE', body: JSON.stringify({ path }) })
+    if (!confirm('Hapus file ini?')) return
+    const res = await fetch('/api/admin/media', { method: 'DELETE', body: JSON.stringify({ path }), headers: { 'Content-Type': 'application/json' } })
+    const data = await res.json()
+
+    if (res.status === 409) {
+      alert(`⚠️ Tidak bisa dihapus!\n\n${data.error}`)
+      return
+    }
+    if (data.error) { alert(data.error); return }
     setFiles(files.filter(f => f.path !== path))
   }
 

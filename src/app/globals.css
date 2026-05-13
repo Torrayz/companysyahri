@@ -29,6 +29,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Dark mode overrides */
+  .dark {
+    --color-background: #0F172A;
+    --color-background-muted: #1E293B;
+    --color-text: #F1F5F9;
+    --color-text-muted: #94A3B8;
+    --color-border: #334155;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
