@@ -103,33 +103,25 @@ ALTER TABLE site_config ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public read site_config" ON site_config
   FOR SELECT USING (TRUE);
 
--- Admin policies (ganti email sesuai admin Anda)
+-- ============================================
+-- ADMIN POLICIES (authenticated users only)
+-- Aman karena tidak ada registrasi publik
+-- ============================================
+
 CREATE POLICY "Admin full access services" ON services
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Admin full access portfolios" ON portfolios
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Admin full access legality" ON legality
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Admin full access profiles" ON profiles
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Admin full access messages" ON messages
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Admin full access site_config" ON site_config
-  FOR ALL USING (
-    auth.uid() IN (SELECT id FROM auth.users WHERE email IN ('tripujiantoro12@gmail.com'))
-  );
+  FOR ALL USING (auth.role() = 'authenticated');
