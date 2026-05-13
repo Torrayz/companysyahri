@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { FolderOpen, Plus } from 'lucide-react'
+import { FolderOpen, Plus, Pencil } from 'lucide-react'
 import { DeletePortfolioButton } from '@/components/admin/delete-portfolio-button'
 
 export default async function AdminPortfolioPage() {
@@ -30,7 +30,12 @@ export default async function AdminPortfolioPage() {
                 <p className="text-xs text-text-muted capitalize">{item.category} {item.client_name ? `• ${item.client_name}` : ''}</p>
               </div>
             </div>
-            <DeletePortfolioButton id={item.id} />
+            <div className="flex items-center gap-1">
+              <Link href={`/kelola-panel/portfolio/${item.id}`} className="rounded-lg p-2 text-text-muted hover:bg-background-muted hover:text-primary">
+                <Pencil className="h-4 w-4" />
+              </Link>
+              <DeletePortfolioButton id={item.id} />
+            </div>
           </div>
         ))}
 
