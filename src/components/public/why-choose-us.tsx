@@ -1,30 +1,16 @@
-import { ShieldCheck, Clock, Users, ThumbsUp } from 'lucide-react'
+import { ShieldCheck, Clock, Users, ThumbsUp, Star, Zap, Heart, Award } from 'lucide-react'
 import { Reveal } from '@/components/public/reveal'
+import { getWhyChooseUs } from '@/actions/content'
 
-const reasons = [
-  {
-    icon: ShieldCheck,
-    title: 'Terdaftar & Legal',
-    description: 'Perusahaan terdaftar resmi dengan dokumen legalitas lengkap.',
-  },
-  {
-    icon: Clock,
-    title: 'Tepat Waktu',
-    description: 'Komitmen pengerjaan sesuai deadline yang disepakati.',
-  },
-  {
-    icon: Users,
-    title: 'Tim Profesional',
-    description: 'Ditangani langsung oleh tim yang berpengalaman di bidangnya.',
-  },
-  {
-    icon: ThumbsUp,
-    title: 'Harga Kompetitif',
-    description: 'Solusi berkualitas dengan harga yang bersaing di pasar.',
-  },
-]
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  ShieldCheck, Clock, Users, ThumbsUp, Star, Zap, Heart, Award,
+}
 
-export function WhyChooseUs() {
+export async function WhyChooseUs() {
+  const reasons = await getWhyChooseUs()
+
+  if (reasons.length === 0) return null
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -36,17 +22,20 @@ export function WhyChooseUs() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map((reason, index) => (
-            <Reveal key={reason.title} delay={index * 100}>
-              <div className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
-                  <reason.icon className="h-7 w-7 text-secondary" />
+          {reasons.map((reason, index) => {
+            const Icon = iconMap[reason.icon] ?? Star
+            return (
+              <Reveal key={reason.id} delay={index * 100}>
+                <div className="text-center">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
+                    <Icon className="h-7 w-7 text-secondary" />
+                  </div>
+                  <h3 className="mt-4 font-semibold text-text">{reason.title}</h3>
+                  <p className="mt-2 text-sm text-text-muted">{reason.description}</p>
                 </div>
-                <h3 className="mt-4 font-semibold text-text">{reason.title}</h3>
-                <p className="mt-2 text-sm text-text-muted">{reason.description}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
