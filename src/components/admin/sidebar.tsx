@@ -8,12 +8,12 @@ import { ADMIN_NAV_LINKS } from '@/lib/constants'
 import {
   LayoutDashboard, Building2, Briefcase, FolderOpen,
   FileCheck, Image as ImageIcon, Mail, LogOut, Moon, Sun,
-  ChevronLeft, ExternalLink
+  ChevronLeft, ExternalLink, FileText
 } from 'lucide-react'
 import { useTheme } from '@/components/theme-provider'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  LayoutDashboard, Building2, Briefcase, FolderOpen, FileCheck, Image: ImageIcon, Mail,
+  LayoutDashboard, Building2, Briefcase, FolderOpen, FileCheck, FileText, Image: ImageIcon, Mail,
 }
 
 export function AdminSidebar() {

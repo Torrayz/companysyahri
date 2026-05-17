@@ -17,6 +17,7 @@ export const NAV_LINKS = [
 export const ADMIN_NAV_LINKS = [
   { href: '/kelola-panel/dashboard', label: 'Dashboard', icon: 'LayoutDashboard' },
   { href: '/kelola-panel/profil', label: 'Profil', icon: 'Building2' },
+  { href: '/kelola-panel/konten', label: 'Konten', icon: 'FileText' },
   { href: '/kelola-panel/layanan', label: 'Layanan', icon: 'Briefcase' },
   { href: '/kelola-panel/portfolio', label: 'Portfolio', icon: 'FolderOpen' },
   { href: '/kelola-panel/legalitas', label: 'Legalitas', icon: 'FileCheck' },

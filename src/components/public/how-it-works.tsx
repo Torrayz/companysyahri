@@ -1,34 +1,16 @@
-import { MessageSquare, FileText, Cog, PackageCheck } from 'lucide-react'
+import { MessageSquare, FileText, Cog, PackageCheck, Star } from 'lucide-react'
 import { Reveal } from '@/components/public/reveal'
+import { getHowItWorks } from '@/actions/content'
 
-const steps = [
-  {
-    icon: MessageSquare,
-    step: '01',
-    title: 'Konsultasi',
-    description: 'Hubungi kami via WhatsApp atau form kontak. Sampaikan kebutuhan Anda.',
-  },
-  {
-    icon: FileText,
-    step: '02',
-    title: 'Penawaran',
-    description: 'Kami berikan proposal dan penawaran harga terbaik sesuai kebutuhan.',
-  },
-  {
-    icon: Cog,
-    step: '03',
-    title: 'Pengerjaan',
-    description: 'Tim kami mengerjakan dengan profesional dan update progres berkala.',
-  },
-  {
-    icon: PackageCheck,
-    step: '04',
-    title: 'Serah Terima',
-    description: 'Pekerjaan selesai tepat waktu dengan kualitas yang terjamin.',
-  },
-]
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  MessageSquare, FileText, Cog, PackageCheck, Star,
+}
 
-export function HowItWorks() {
+export async function HowItWorks() {
+  const steps = await getHowItWorks()
+
+  if (steps.length === 0) return null
+
   return (
     <section className="py-20 bg-background-muted">
       <div className="container mx-auto px-4">
@@ -40,26 +22,26 @@ export function HowItWorks() {
         </div>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step, index) => (
-            <Reveal key={step.title} delay={index * 120}>
-              <div className="relative text-center">
-                {/* Connector line (hidden on mobile & last item) */}
-                {index < steps.length - 1 && (
-                  <div className="absolute right-0 top-10 hidden h-px w-full translate-x-1/2 bg-border lg:block" />
-                )}
-
-                <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10">
-                  <step.icon className="h-8 w-8 text-primary" />
-                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
-                    {step.step}
-                  </span>
+          {steps.map((step, index) => {
+            const Icon = iconMap[step.icon] ?? Star
+            return (
+              <Reveal key={step.id} delay={index * 120}>
+                <div className="relative text-center">
+                  {index < steps.length - 1 && (
+                    <div className="absolute right-0 top-10 hidden h-px w-full translate-x-1/2 bg-border lg:block" />
+                  )}
+                  <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10">
+                    <Icon className="h-8 w-8 text-primary" />
+                    <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
+                      {String(step.step_number).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-text">{step.title}</h3>
+                  <p className="mt-2 text-sm text-text-muted">{step.description}</p>
                 </div>
-
-                <h3 className="mt-5 text-lg font-semibold text-text">{step.title}</h3>
-                <p className="mt-2 text-sm text-text-muted">{step.description}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
