@@ -77,8 +77,11 @@ export function PortfolioGrid({ portfolios }: { portfolios: Portfolio[] }) {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center text-text-light">
-                  <FolderOpen className="h-10 w-10 opacity-30" />
+                <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+                    <FolderOpen className="h-7 w-7 text-primary/50" />
+                  </div>
+                  <span className="mt-2 text-xs text-text-muted">Preview</span>
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
