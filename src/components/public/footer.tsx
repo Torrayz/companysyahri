@@ -98,6 +98,12 @@ export function Footer() {
                 </div>
               </li>
             </ul>
+            {/* Operating hours */}
+            <div className="mt-6 rounded-lg border border-border bg-background p-3">
+              <p className="text-xs font-semibold text-text">Jam Operasional</p>
+              <p className="mt-1 text-xs text-text-muted">Senin - Jumat: 08.00 - 17.00 WIB</p>
+              <p className="text-xs text-text-muted">Sabtu: 08.00 - 12.00 WIB</p>
+            </div>
           </div>
         </div>
 

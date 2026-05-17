@@ -98,10 +98,11 @@ export default async function LayananPage() {
                 Hubungi kami untuk konsultasi kebutuhan spesifik bisnis Anda.
               </p>
               <Link
-                href="/kontak"
-                className="group mt-6 inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3 font-semibold text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/20"
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ''}?text=${encodeURIComponent('Halo, saya tertarik dengan layanan CV. Prabaswara Gandar Prima. Bisa konsultasi?')}`}
+                target="_blank"
+                className="group mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-7 py-3 font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/20"
               >
-                Hubungi Kami
+                Chat via WhatsApp
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
