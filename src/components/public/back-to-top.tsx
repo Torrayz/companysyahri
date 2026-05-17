@@ -14,15 +14,15 @@ export function BackToTop() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  if (!visible) return null
-
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-6 left-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform hover:scale-110"
+      className={`fixed bottom-6 left-6 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-background/80 text-text-muted shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-primary/10 ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
+      }`}
       aria-label="Kembali ke atas"
     >
-      <ArrowUp className="h-4 w-4 text-text" />
+      <ArrowUp className="h-4 w-4" />
     </button>
   )
 }

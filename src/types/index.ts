@@ -30,7 +30,7 @@ export interface Portfolio {
   title: string
   description: string | null
   image_url: string | null
-  category: 'pengadaan' | 'konsumsi' | 'digital' | 'atk'
+  category: string
   client_name: string | null
   is_active: boolean
   created_at: string
