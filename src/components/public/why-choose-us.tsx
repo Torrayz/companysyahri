@@ -24,33 +24,15 @@ const reasons = [
   },
 ]
 
-const stats = [
-  { value: '2026', label: 'Tahun Berdiri' },
-  { value: '5+', label: 'Layanan' },
-  { value: '100%', label: 'Komitmen' },
-  { value: '24/7', label: 'Support' },
-]
-
 export function WhyChooseUs() {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        {/* Stats bar */}
-        <Reveal>
-          <div className="grid grid-cols-2 gap-4 rounded-2xl bg-primary p-8 text-white md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold md:text-4xl">{stat.value}</p>
-                <p className="mt-1 text-sm text-white/70">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Why choose us */}
-        <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold text-text md:text-4xl">Kenapa Pilih Kami?</h2>
-          <p className="mt-3 text-text-muted">Keunggulan yang kami tawarkan untuk mitra bisnis</p>
+        <div className="text-center">
+          <Reveal>
+            <h2 className="text-3xl font-bold text-text md:text-4xl">Kenapa Pilih Kami?</h2>
+            <p className="mt-3 text-text-muted">Keunggulan yang kami tawarkan untuk mitra bisnis</p>
+          </Reveal>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
