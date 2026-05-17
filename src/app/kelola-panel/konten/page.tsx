@@ -41,6 +41,7 @@ export default function AdminKontenPage() {
   async function handleAdd(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = new FormData(e.currentTarget)
+    const formEl = e.currentTarget
 
     if (tab === 'clients') {
       await createClientItem({ name: form.get('name') as string, order: items.length + 1 })
@@ -50,7 +51,7 @@ export default function AdminKontenPage() {
       await createHowItWorks({ step_number: items.length + 1, title: form.get('title') as string, description: form.get('description') as string, icon: 'Cog' })
     }
 
-    e.currentTarget.reset()
+    formEl.reset()
     loadData()
   }
 
