@@ -1,11 +1,12 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import { serviceSchema } from '@/lib/validations'
 import { revalidatePath } from 'next/cache'
 
 export async function getServices() {
-  const supabase = createAdminClient()
+  const supabase = await createClient()
   const { data } = await supabase.from('services').select('*').eq('is_active', true).order('order')
   return data ?? []
 }

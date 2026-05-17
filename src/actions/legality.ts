@@ -1,11 +1,12 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import { legalitySchema } from '@/lib/validations'
 import { revalidatePath } from 'next/cache'
 
 export async function getLegality() {
-  const supabase = createAdminClient()
+  const supabase = await createClient()
   const { data } = await supabase.from('legality').select('*').order('order')
   return data ?? []
 }

@@ -17,7 +17,7 @@ export function DeletePortfolioButton({ id }: { id: string }) {
   }
 
   return (
-    <button onClick={handleDelete} disabled={loading} className="rounded-lg p-2 text-text-muted hover:bg-red-50 hover:text-red-600 disabled:opacity-50" aria-label="Hapus">
+    <button onClick={handleDelete} disabled={loading} className="rounded-xl p-2.5 text-text-muted transition-all hover:bg-red-500/10 hover:text-red-600 disabled:opacity-50 dark:hover:text-red-400" aria-label="Hapus">
       <Trash2 className="h-4 w-4" />
     </button>
   )

@@ -8,10 +8,10 @@
 | Item | Detail |
 |------|--------|
 | Nama Proyek | Website Company Profile CV. Prabaswara Gandar Prima |
-| Versi Dokumen | 1.0 |
-| Tanggal | 14 Mei 2026 |
+| Versi Dokumen | 1.1 |
+| Tanggal | 14 Mei 2026 (Updated) |
 | Pemilik Proyek | CV. Prabaswara Gandar Prima |
-| Status | Draft |
+| Status | In Development |
 
 ---
 
@@ -249,14 +249,19 @@ Menjadi perusahaan penyedia barang dan jasa yang inovatif, terpercaya, dan mampu
 ### 12.2 Palet Warna (Rekomendasi)
 | Peran | Warna | Hex |
 |-------|-------|-----|
-| Primary | Deep Blue | #1E3A5F |
-| Secondary | Gold/Amber | #D4A853 |
-| Accent | Teal | #0D9488 |
-| Background | White/Light Gray | #FFFFFF / #F8FAFC |
-| Text | Dark Gray | #1E293B |
-| Muted | Slate | #64748B |
+| Primary | Deep Navy | #0F2B5B |
+| Primary Light | Medium Blue | #1A4A8A |
+| Secondary | Warm Gold | #D4982A |
+| Secondary Light | Bright Gold | #F5B84C |
+| Accent | Sky Blue | #0EA5E9 |
+| Background | White | #FFFFFF |
+| Background Muted | Slate-50 | #F8FAFC |
+| Surface | White | #FFFFFF |
+| Text | Slate-900 | #0F172A |
+| Text Muted | Slate-500 | #64748B |
+| Border | Slate-200 | #E2E8F0 |
 
-> *Catatan: Palet warna dapat disesuaikan setelah logo final tersedia.*
+> **Dark Mode:** Fully supported. Admin dan public pages menggunakan dark mode yang konsisten dengan warna `/10` opacity (bukan `bg-xxx-50` yang tidak dark-mode safe).
 
 ### 12.3 Tipografi
 - Heading: Inter / Plus Jakarta Sans (bold, modern)
@@ -267,29 +272,35 @@ Menjadi perusahaan penyedia barang dan jasa yang inovatif, terpercaya, dan mampu
 
 ## 13. Fase Pengembangan
 
-### Fase 1 — MVP (Target: 2-3 minggu)
+### Fase 1 — MVP ✅
 - [x] Setup project (Next.js + Supabase + Vercel)
-- [ ] Database schema & seed data
-- [ ] Public pages (Home, Profil, Layanan, Kontak)
-- [ ] Form kontak + WhatsApp button
-- [ ] SEO dasar
-- [ ] Responsive design
-- [ ] Deploy ke Vercel
+- [x] Database schema & seed data
+- [x] Public pages (Home, Profil, Layanan, Kontak)
+- [x] Form kontak + WhatsApp button
+- [x] SEO dasar (meta tags, structured data)
+- [x] Responsive design
+- [x] Deploy ke Vercel
 
-### Fase 2 — Admin & Portfolio (Target: 1-2 minggu)
-- [ ] Admin authentication
-- [ ] Admin dashboard
-- [ ] CRUD layanan & portfolio
-- [ ] Upload gambar (Supabase Storage)
-- [ ] Halaman portfolio public
-- [ ] Halaman legalitas
+### Fase 2 — Admin & Portfolio ✅
+- [x] Admin authentication (Supabase Auth)
+- [x] Admin dashboard dengan statistik
+- [x] CRUD layanan, portfolio, legalitas
+- [x] Upload gambar (Supabase Storage)
+- [x] Halaman portfolio public dengan filter kategori
+- [x] Halaman legalitas
+- [x] Media manager
 
-### Fase 3 — Polish & Optimization (Target: 1 minggu)
-- [ ] Animasi & micro-interactions
-- [ ] Performance optimization
-- [ ] SEO advanced (structured data, sitemap)
-- [ ] Testing & bug fixing
-- [ ] Final deployment
+### Fase 3 — Polish & Optimization ✅
+- [x] Animasi & micro-interactions (reveal, card-glow, shine, float)
+- [x] UI/UX redesign premium (Deep Navy + Warm Gold palette)
+- [x] Dark mode support (public + admin)
+- [x] Admin dashboard redesign (glassmorphism login, modern sidebar)
+- [x] Portfolio filter dinamis (generate kategori dari data DB)
+- [x] Service highlight dinamis (fetch dari DB, bukan hardcoded)
+- [x] Dark-mode safe colors di seluruh admin panel
+- [x] Performance: CSS-first animations, minimal `'use client'`, server components
+- [x] SEO advanced (structured data JSON-LD)
+- [x] Bug fix: portfolio RLS, layanan overlap, kategori filter
 
 ### Fase 4 — Future Enhancement (Post-MVP)
 - [ ] Multi-bahasa (ID/EN)
@@ -297,6 +308,7 @@ Menjadi perusahaan penyedia barang dan jasa yang inovatif, terpercaya, dan mampu
 - [ ] Katalog produk ATK
 - [ ] Integrasi email notification
 - [ ] Analytics dashboard
+- [ ] View Transitions (React 19.2)
 
 ---
 

@@ -1,5 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin'
-import { Briefcase, FolderOpen, FileCheck, Mail } from 'lucide-react'
+import { Briefcase, FolderOpen, FileCheck, Mail, ArrowUpRight, TrendingUp } from 'lucide-react'
+import Link from 'next/link'
 
 async function getStats() {
   const supabase = createAdminClient()
@@ -21,59 +22,126 @@ export default async function DashboardPage() {
   const stats = await getStats()
 
   const cards = [
-    { label: 'Layanan', value: stats.services, icon: Briefcase, color: 'from-blue-500 to-blue-600', bg: 'bg-blue-50' },
-    { label: 'Portfolio', value: stats.portfolios, icon: FolderOpen, color: 'from-purple-500 to-purple-600', bg: 'bg-purple-50' },
-    { label: 'Legalitas', value: stats.legality, icon: FileCheck, color: 'from-emerald-500 to-emerald-600', bg: 'bg-emerald-50' },
-    { label: 'Pesan Belum Dibaca', value: stats.unreadMessages, icon: Mail, color: 'from-orange-500 to-orange-600', bg: 'bg-orange-50' },
+    {
+      label: 'Layanan',
+      value: stats.services,
+      icon: Briefcase,
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-500/10',
+      href: '/kelola-panel/layanan',
+    },
+    {
+      label: 'Portfolio',
+      value: stats.portfolios,
+      icon: FolderOpen,
+      color: 'text-violet-600 dark:text-violet-400',
+      bg: 'bg-violet-500/10',
+      href: '/kelola-panel/portfolio',
+    },
+    {
+      label: 'Legalitas',
+      value: stats.legality,
+      icon: FileCheck,
+      color: 'text-emerald-600 dark:text-emerald-400',
+      bg: 'bg-emerald-500/10',
+      href: '/kelola-panel/legalitas',
+    },
+    {
+      label: 'Pesan Baru',
+      value: stats.unreadMessages,
+      icon: Mail,
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-500/10',
+      href: '/kelola-panel/pesan',
+    },
+  ]
+
+  const quickActions = [
+    {
+      label: 'Tambah Layanan',
+      desc: 'Buat layanan baru',
+      href: '/kelola-panel/layanan/tambah',
+      icon: Briefcase,
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-500/10',
+      hoverBorder: 'hover:border-blue-500/30',
+    },
+    {
+      label: 'Tambah Portfolio',
+      desc: 'Upload proyek baru',
+      href: '/kelola-panel/portfolio/tambah',
+      icon: FolderOpen,
+      color: 'text-violet-600 dark:text-violet-400',
+      bg: 'bg-violet-500/10',
+      hoverBorder: 'hover:border-violet-500/30',
+    },
+    {
+      label: 'Lihat Pesan',
+      desc: `${stats.unreadMessages} belum dibaca`,
+      href: '/kelola-panel/pesan',
+      icon: Mail,
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-500/10',
+      hoverBorder: 'hover:border-amber-500/30',
+    },
   ]
 
   return (
     <div>
-      <div>
-        <h1 className="text-2xl font-bold text-text">Dashboard</h1>
-        <p className="mt-1 text-sm text-text-muted">Selamat datang di panel admin Prabaswara</p>
+      {/* Welcome header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-text">Dashboard</h1>
+          <p className="mt-1 text-sm text-text-muted">Selamat datang di panel admin Prabaswara</p>
+        </div>
+        <div className="hidden items-center gap-2 rounded-xl border border-border bg-background-muted px-4 py-2 text-sm text-text-muted sm:flex">
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          Website Aktif
+        </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Stat cards */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
-          <div key={card.label} className="relative overflow-hidden rounded-xl border border-border bg-background p-5">
-            <div className={`absolute -right-4 -top-4 h-16 w-16 rounded-full bg-gradient-to-br ${card.color} opacity-20 blur-xl`} />
+          <Link
+            key={card.label}
+            href={card.href}
+            className="group relative overflow-hidden rounded-2xl border border-border bg-background p-5 transition-all hover:border-primary/20 hover:shadow-md"
+          >
             <div className="flex items-center justify-between">
-              <span className="text-sm text-text-muted">{card.label}</span>
-              <div className={`rounded-lg ${card.bg} p-2`}>
-                <card.icon className="h-4 w-4 text-text-muted" />
+              <span className="text-sm font-medium text-text-muted">{card.label}</span>
+              <div className={`rounded-xl ${card.bg} p-2.5`}>
+                <card.icon className={`h-5 w-5 ${card.color}`} />
               </div>
             </div>
             <p className="mt-3 text-3xl font-bold text-text">{card.value}</p>
-          </div>
+            <div className="mt-2 flex items-center gap-1 text-xs text-text-light opacity-0 transition-opacity group-hover:opacity-100">
+              <span>Lihat detail</span>
+              <ArrowUpRight className="h-3 w-3" />
+            </div>
+          </Link>
         ))}
       </div>
 
       {/* Quick actions */}
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold text-text">Aksi Cepat</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <a href="/kelola-panel/layanan/tambah" className="flex items-center gap-3 rounded-xl border border-border p-4 transition-all hover:border-blue-300 hover:shadow-sm">
-            <div className="rounded-lg bg-blue-50 p-2"><Briefcase className="h-5 w-5 text-blue-600" /></div>
-            <div>
-              <p className="font-medium text-text">Tambah Layanan</p>
-              <p className="text-xs text-text-muted">Buat layanan baru</p>
-            </div>
-          </a>
-          <a href="/kelola-panel/portfolio/tambah" className="flex items-center gap-3 rounded-xl border border-border p-4 transition-all hover:border-purple-300 hover:shadow-sm">
-            <div className="rounded-lg bg-purple-50 p-2"><FolderOpen className="h-5 w-5 text-purple-600" /></div>
-            <div>
-              <p className="font-medium text-text">Tambah Portfolio</p>
-              <p className="text-xs text-text-muted">Upload proyek baru</p>
-            </div>
-          </a>
-          <a href="/kelola-panel/pesan" className="flex items-center gap-3 rounded-xl border border-border p-4 transition-all hover:border-orange-300 hover:shadow-sm">
-            <div className="rounded-lg bg-orange-50 p-2"><Mail className="h-5 w-5 text-orange-600" /></div>
-            <div>
-              <p className="font-medium text-text">Lihat Pesan</p>
-              <p className="text-xs text-text-muted">{stats.unreadMessages} belum dibaca</p>
-            </div>
-          </a>
+      <div className="mt-10">
+        <h2 className="text-lg font-bold text-text">Aksi Cepat</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {quickActions.map((action) => (
+            <Link
+              key={action.label}
+              href={action.href}
+              className={`group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 transition-all ${action.hoverBorder} hover:shadow-md`}
+            >
+              <div className={`rounded-xl ${action.bg} p-3 transition-transform group-hover:scale-110`}>
+                <action.icon className={`h-5 w-5 ${action.color}`} />
+              </div>
+              <div>
+                <p className="font-semibold text-text">{action.label}</p>
+                <p className="text-xs text-text-muted">{action.desc}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
