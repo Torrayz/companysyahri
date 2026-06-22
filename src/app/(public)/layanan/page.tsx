@@ -31,13 +31,19 @@ export default async function LayananPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative z-0 overflow-hidden bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E] py-24">
-        <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[500px] w-[500px] rounded-full bg-[#D4982A]/10 blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-40 -left-40 -z-10 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/10 blur-[100px]" />
+      <section className="relative overflow-hidden bg-primary py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80" />
 
-        <div className="container relative mx-auto px-4 text-center lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4982A]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
               Layanan Kami
             </span>
           </Reveal>
@@ -63,7 +69,7 @@ export default async function LayananPage() {
               const colors = colorMap[service.icon ?? ''] ?? fallbackColors[index % fallbackColors.length]
               return (
                 <Reveal key={service.id} delay={index * 80}>
-                  <div className={`card-glow group h-full rounded-2xl border border-border bg-gradient-to-br ${colors.gradient} p-7`}>
+                  <div className="card-corporate h-full p-7">
                     <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-110`}>
                       <Icon className={`h-7 w-7 ${colors.iconColor}`} />
                     </div>
@@ -90,8 +96,7 @@ export default async function LayananPage() {
       {/* CTA */}
       <section className="container mx-auto px-4 pb-20 lg:px-8">
         <Reveal>
-          <div className="relative overflow-hidden rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 p-10 text-center">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/5 blur-[60px]" />
+          <div className="card-corporate p-10 text-center">
             <div className="relative">
               <h2 className="text-2xl font-bold text-text md:text-3xl">Butuh Layanan Khusus?</h2>
               <p className="mx-auto mt-3 max-w-lg text-text-muted">

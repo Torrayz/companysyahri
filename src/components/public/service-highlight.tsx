@@ -111,7 +111,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 
   return (
     <Reveal delay={index * 80}>
-      <div className={`card-glow group h-full rounded-2xl border border-border bg-gradient-to-br ${colors.gradient} p-7`}>
+      <div className="card-corporate h-full p-7">
         <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-110`}>
           <Icon className={`h-7 w-7 ${colors.iconColor}`} />
         </div>

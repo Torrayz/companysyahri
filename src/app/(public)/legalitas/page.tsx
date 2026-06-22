@@ -15,13 +15,19 @@ export default async function LegalitasPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative z-0 overflow-hidden bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E] py-24">
-        <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[500px] w-[500px] rounded-full bg-[#D4982A]/10 blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-40 -left-40 -z-10 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/10 blur-[100px]" />
+      <section className="relative overflow-hidden bg-primary py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80" />
 
-        <div className="container relative mx-auto px-4 text-center lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4982A]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
               <Award className="h-3.5 w-3.5" />
               Terdaftar Resmi
             </span>
@@ -44,7 +50,7 @@ export default async function LegalitasPage() {
         <div className="mx-auto max-w-2xl space-y-4">
           {documents.map((doc: Legality, index: number) => (
             <Reveal key={doc.id} delay={index * 80}>
-              <div className="card-glow group flex items-start gap-5 rounded-2xl border border-border bg-background p-6">
+              <div className="card-corporate flex items-start gap-5 p-6">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 transition-transform duration-300 group-hover:scale-110">
                   <FileCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
@@ -85,8 +91,7 @@ export default async function LegalitasPage() {
       {/* Trust note */}
       <section className="container mx-auto mt-16 px-4 pb-20 lg:px-8">
         <Reveal>
-          <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 p-8 text-center">
-            <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-primary/5 blur-[50px]" />
+          <div className="card-corporate mx-auto max-w-2xl p-8 text-center">
             <div className="relative">
               <ShieldCheck className="mx-auto h-10 w-10 text-primary" />
               <h3 className="mt-4 text-lg font-bold text-text">Perusahaan Terverifikasi</h3>

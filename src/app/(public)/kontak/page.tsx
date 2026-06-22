@@ -45,15 +45,20 @@ export default function KontakPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E]" />
-        <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#D4982A]/10 blur-[120px]" />
-        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/10 blur-[100px]" />
+      <section className="relative overflow-hidden bg-primary py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80" />
 
-        <div className="container relative mx-auto px-4 text-center lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4982A]">
-              <Send className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+              <Send className="h-3.5 w-3.5 text-secondary" />
               Hubungi Kami
             </span>
           </Reveal>
@@ -76,7 +81,7 @@ export default function KontakPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contactInfo.map((info, index) => (
               <Reveal key={info.title} delay={index * 80}>
-                <div className="card-glow rounded-2xl border border-border bg-background p-5">
+                <div className="card-corporate p-5">
                   <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${info.bg}`}>
                     <info.icon className={`h-5 w-5 ${info.color}`} />
                   </div>
@@ -94,7 +99,7 @@ export default function KontakPage() {
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Contact form */}
           <Reveal>
-            <div className="rounded-2xl border border-border bg-background p-8">
+            <div className="card-corporate p-8">
               <h2 className="text-2xl font-bold text-text">Kirim Pesan</h2>
               <div className="mt-1 h-1 w-12 rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="mt-4 text-sm text-text-muted">

@@ -65,14 +65,19 @@ export default async function ProfilPage() {
   return (
     <div>
       {/* Hero banner */}
-      <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E]" />
-        <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#D4982A]/10 blur-[120px]" />
-        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/10 blur-[100px]" />
+      <section className="relative overflow-hidden bg-primary py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80" />
 
-        <div className="container relative mx-auto px-4 text-center lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4982A]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
               <Building2 className="h-3.5 w-3.5" />
               Tentang Kami
             </span>
@@ -94,7 +99,7 @@ export default async function ProfilPage() {
       <section className="relative z-10 -mt-10">
         <div className="container mx-auto px-4 lg:px-8">
           <Reveal>
-            <div className="mx-auto grid max-w-3xl grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-background p-1 shadow-lg">
+            <div className="card-corporate mx-auto grid max-w-3xl grid-cols-3 divide-x divide-border overflow-hidden p-1">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center px-4 py-5">
                   <stat.icon className="h-5 w-5 text-primary" />
@@ -139,10 +144,8 @@ export default async function ProfilPage() {
           
           <Reveal delay={200}>
             <div className="relative mx-auto h-[400px] w-full max-w-lg lg:h-[500px]">
-              {/* Premium image placeholder with glassmorphism */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 shadow-2xl" />
-              <div className="absolute -left-6 -top-6 h-32 w-32 rounded-full bg-secondary/20 blur-2xl" />
-              <div className="absolute -bottom-6 -right-6 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
+              {/* Clean structured image frame */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 to-secondary/5" />
               
               <div className="absolute inset-4 rounded-2xl bg-white shadow-inner overflow-hidden">
                  <div className="absolute inset-4 bg-[url('/images/logo.jpeg')] bg-contain bg-no-repeat bg-center transition-transform hover:scale-105 duration-700" />
@@ -155,8 +158,7 @@ export default async function ProfilPage() {
       {/* Visi — data dari database */}
       <section className="container mx-auto mt-20 px-4 lg:px-8">
         <Reveal>
-          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 p-10">
-            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/5 blur-[60px]" />
+          <div className="card-corporate mx-auto max-w-3xl p-10">
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                 Visi
@@ -182,7 +184,7 @@ export default async function ProfilPage() {
               const iconData = missionIcons[index % missionIcons.length]
               return (
                 <Reveal key={index} delay={index * 100}>
-                  <div className="card-glow group flex gap-5 rounded-2xl border border-border bg-background p-6">
+                  <div className="card-corporate flex gap-5 p-6">
                     <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${iconData.bg} transition-transform duration-300 group-hover:scale-110`}>
                       <iconData.icon className={`h-6 w-6 ${iconData.color}`} />
                     </div>

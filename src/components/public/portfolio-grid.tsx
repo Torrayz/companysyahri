@@ -64,7 +64,7 @@ export function PortfolioGrid({ portfolios }: { portfolios: Portfolio[] }) {
           <Link
             key={item.id}
             href={`/portfolio/${item.id}`}
-            className="card-glow group overflow-hidden rounded-2xl border border-border bg-background"
+            className="card-corporate group overflow-hidden"
           >
             {/* Image */}
             <div className="relative aspect-video overflow-hidden bg-background-muted">
