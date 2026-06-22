@@ -1,8 +1,29 @@
 'use server'
 
-import { createAdminClient } from '@/lib/supabase/admin'
+/**
+ * Server Actions — Upload media (gambar & dokumen) ke Supabase Storage.
+ *
+ * Kedua fungsi ini bersifat admin-only dan dilindungi oleh `requireAuth()`.
+ * File divalidasi tipe dan ukurannya sebelum upload.
+ *
+ * @module actions/media
+ */
 
+import { createAdminClient } from '@/lib/supabase/admin'
+import { requireAuth } from '@/lib/supabase/auth'
+
+/**
+ * Upload gambar ke Supabase Storage bucket `media`.
+ *
+ * Allowed types: JPEG, PNG, WebP, SVG.
+ * Max size: 2MB.
+ *
+ * @param formData - FormData berisi field `file`
+ * @returns `{ success: true, url: string }` atau `{ error: string }`
+ */
 export async function uploadImage(formData: FormData) {
+  await requireAuth()
+
   const file = formData.get('file') as File
   if (!file) return { error: 'No file provided' }
 
@@ -26,7 +47,18 @@ export async function uploadImage(formData: FormData) {
   return { success: true, url: publicUrl }
 }
 
+/**
+ * Upload dokumen ke Supabase Storage bucket `media/docs`.
+ *
+ * Allowed types: PDF, JPEG, PNG, WebP.
+ * Max size: 5MB.
+ *
+ * @param formData - FormData berisi field `file`
+ * @returns `{ success: true, url: string }` atau `{ error: string }`
+ */
 export async function uploadDocument(formData: FormData) {
+  await requireAuth()
+
   const file = formData.get('file') as File
   if (!file) return { error: 'No file provided' }
 

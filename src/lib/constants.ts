@@ -1,4 +1,11 @@
+/**
+ * Application Constants — Konfigurasi site dan navigasi.
+ *
+ * @module lib/constants
+ */
+
 export const SITE_CONFIG = {
+
   name: 'CV. Prabaswara Gandar Prima',
   tagline: 'Sinergi Kebutuhan Bisnis dan Inovasi Digital',
   address: 'Sudimara Selatan, Ciledug, Kota Tangerang, Banten',

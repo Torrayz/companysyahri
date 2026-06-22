@@ -1,3 +1,14 @@
+/**
+ * Supabase Server Client — Untuk Server Components & Server Actions.
+ *
+ * Menggunakan anon key + cookies untuk session management.
+ * Operasi tunduk pada Row Level Security policies.
+ * Cookie writing di-catch dengan try/catch karena tidak bisa dilakukan
+ * di Server Components (hanya bisa di Server Actions / Route Handlers).
+ *
+ * @module lib/supabase/server
+ */
+
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
