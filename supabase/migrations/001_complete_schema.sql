@@ -171,3 +171,29 @@ GRANT ALL ON public.site_config TO service_role;
 GRANT ALL ON public.why_choose_us TO service_role;
 GRANT ALL ON public.how_it_works TO service_role;
 GRANT ALL ON public.clients TO service_role;
+
+-- ============================================
+-- TRIGGERS — Auto-update `updated_at`
+-- ============================================
+
+-- Fungsi trigger: set updated_at ke waktu sekarang sebelum UPDATE
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Apply trigger ke semua tabel yang punya kolom updated_at
+CREATE TRIGGER trigger_services_updated_at
+  BEFORE UPDATE ON services FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER trigger_portfolios_updated_at
+  BEFORE UPDATE ON portfolios FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER trigger_profiles_updated_at
+  BEFORE UPDATE ON profiles FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER trigger_site_config_updated_at
+  BEFORE UPDATE ON site_config FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

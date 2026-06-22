@@ -1,4 +1,14 @@
+/**
+ * TypeScript Type Definitions — Interfaces untuk semua entity database.
+ *
+ * Setiap interface merepresentasikan satu tabel di Supabase.
+ * Digunakan untuk type-safety di seluruh aplikasi.
+ *
+ * @module types/index
+ */
+
 export interface Profile {
+
   id: string
   company_name: string
   tagline: string | null

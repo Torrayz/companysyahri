@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { MapPin, Mail, Phone, Clock, Send } from 'lucide-react'
 import { ContactForm } from '@/components/public/contact-form'
-import { GoogleMaps } from '@/components/public/google-maps'
 import { SITE_CONFIG } from '@/lib/constants'
+import { MapWrapper } from '@/components/public/map-wrapper'
 import { Reveal } from '@/components/public/reveal'
 
 export const metadata: Metadata = {
@@ -110,7 +110,7 @@ export default function KontakPage() {
           <Reveal delay={200}>
             <div className="space-y-6">
               <div className="overflow-hidden rounded-2xl border border-border">
-                <GoogleMaps />
+                <MapWrapper />
               </div>
               <div className="rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 p-6">
                 <h3 className="font-bold text-text">Respons Cepat</h3>
