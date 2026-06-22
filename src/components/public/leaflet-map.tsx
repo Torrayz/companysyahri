@@ -46,7 +46,8 @@ export default function LeafletMap() {
         <Marker position={position} icon={customIcon}>
           <Popup>
             <strong>CV. Prabaswara Gandar Prima</strong><br/>
-            Tangerang, Banten
+            Kp. Dukuh, Gg. Hj. Madin, Ciledug<br/>
+            Kota Tangerang, Banten
           </Popup>
         </Marker>
       </MapContainer>
