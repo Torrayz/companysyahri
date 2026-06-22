@@ -144,11 +144,8 @@ export default async function ProfilPage() {
               <div className="absolute -left-6 -top-6 h-32 w-32 rounded-full bg-secondary/20 blur-2xl" />
               <div className="absolute -bottom-6 -right-6 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
               
-              <div className="absolute inset-4 rounded-2xl bg-background/50 border border-white/20 backdrop-blur-sm overflow-hidden flex flex-col justify-center items-center">
-                 <div className="absolute inset-0 bg-[url('/images/logo.jpeg')] bg-cover bg-center opacity-10 grayscale hover:grayscale-0 transition-all duration-700" />
-                 <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-xl">
-                   <Building2 className="h-10 w-10 text-primary" />
-                 </div>
+              <div className="absolute inset-4 rounded-2xl bg-white shadow-inner overflow-hidden">
+                 <div className="absolute inset-4 bg-[url('/images/logo.jpeg')] bg-contain bg-no-repeat bg-center transition-transform hover:scale-105 duration-700" />
               </div>
             </div>
           </Reveal>
