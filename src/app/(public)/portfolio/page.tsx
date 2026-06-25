@@ -15,14 +15,20 @@ export default async function PortfolioPage() {
   return (
     <div>
       {/* Hero — z-0 keeps it below the filter grid */}
-      <section className="relative z-0 overflow-hidden bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E] py-24">
-        <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[500px] w-[500px] rounded-full bg-[#D4982A]/10 blur-[120px]" />
-        <div className="pointer-events-none absolute -bottom-40 -left-40 -z-10 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/10 blur-[100px]" />
+      <section className="relative overflow-hidden bg-primary py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/80" />
 
-        <div className="container relative mx-auto px-4 text-center lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4982A]">
-              <FolderOpen className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+              <FolderOpen className="h-3.5 w-3.5 text-secondary" />
               Karya Kami
             </span>
           </Reveal>

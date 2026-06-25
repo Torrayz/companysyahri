@@ -102,7 +102,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="btn-shine group flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-6 py-3.5 font-semibold text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/20 disabled:opacity-50 disabled:hover:shadow-none"
+        className="group flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-6 py-3.5 font-semibold text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/20 disabled:opacity-50 disabled:hover:shadow-none"
       >
         {status === 'loading' ? (
           <>

@@ -33,11 +33,16 @@ export default function AdminLoginPage() {
     'mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 transition-all focus:border-[#D4982A]/50 focus:bg-white/10 focus:ring-2 focus:ring-[#D4982A]/20'
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#070E1F] via-[#0F2B5B] to-[#0C1E3E] px-4">
-      {/* Decorative orbs */}
+    <div className="flex min-h-screen items-center justify-center bg-primary px-4">
+      {/* Subtle grid pattern */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#D4982A]/8 blur-[120px]" />
-        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-[#0EA5E9]/8 blur-[100px]" />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+          }}
+        />
       </div>
 
       <div className="relative w-full max-w-sm">
@@ -93,7 +98,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-shine flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D4982A] to-[#F5B84C] py-3.5 font-semibold text-[#0F2B5B] transition-all hover:shadow-lg hover:shadow-[#D4982A]/20 disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary py-3.5 font-bold text-primary transition-all hover:bg-secondary-light hover:shadow-lg disabled:opacity-50"
             >
               {loading ? (
                 <>
