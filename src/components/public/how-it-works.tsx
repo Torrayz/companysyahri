@@ -12,32 +12,69 @@ export async function HowItWorks() {
   if (steps.length === 0) return null
 
   return (
-    <section className="py-20 bg-background-muted">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden bg-primary py-24 lg:py-32">
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      {/* Content */}
+      <div className="container relative z-10 mx-auto px-4 lg:px-8">
+        {/* Section header */}
         <div className="text-center">
           <Reveal>
-            <h2 className="text-3xl font-bold text-text md:text-4xl">Cara Kerja Kami</h2>
-            <p className="mt-3 text-text-muted">Proses kerjasama yang mudah dan transparan</p>
+            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white">
+              Proses Kerja
+            </span>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              Cara Kerja Kami
+            </h2>
+          </Reveal>
+          <Reveal delay={160}>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 lg:text-lg">
+              Proses kerjasama yang mudah dan transparan untuk memenuhi kebutuhan bisnis Anda
+            </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Steps grid */}
+        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
           {steps.map((step, index) => {
             const Icon = iconMap[step.icon] ?? Star
             return (
               <Reveal key={step.id} delay={index * 120}>
-                <div className="relative text-center">
+                <div className="relative flex flex-col items-center text-center lg:px-6">
+                  {/* Connecting dashed line between steps (desktop only) */}
                   {index < steps.length - 1 && (
-                    <div className="absolute right-0 top-10 hidden h-px w-full translate-x-1/2 bg-border lg:block" />
+                    <div className="absolute left-1/2 top-7 hidden h-px w-full border-t-2 border-dashed border-white/20 lg:block" />
                   )}
-                  <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10">
-                    <Icon className="h-8 w-8 text-primary" />
-                    <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
-                      {String(step.step_number).padStart(2, '0')}
-                    </span>
+
+                  {/* Step number circle */}
+                  <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-lg font-bold text-primary shadow-lg">
+                    {String(step.step_number).padStart(2, '0')}
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-text">{step.title}</h3>
-                  <p className="mt-2 text-sm text-text-muted">{step.description}</p>
+
+                  {/* Icon box */}
+                  <div className="mt-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+                    <Icon className="h-7 w-7 text-white" />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="mt-5 text-lg font-bold text-white">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
+                    {step.description}
+                  </p>
                 </div>
               </Reveal>
             )
